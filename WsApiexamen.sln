@@ -5,9 +5,9 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WsApiexamen", "WsApiexamen\WsApiexamen.csproj", "{A44A6EC5-84B8-4CD1-806B-0B073A1C3A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apiexamen", "apiexamen\apiexamen.csproj", "{118EAA59-A494-4237-BA6A-ACD6E0A46E7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apiexamen", "apiexamen\apiexamen.csproj", "{118EAA59-A494-4237-BA6A-ACD6E0A46E7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExamenFront", "ExamenFront\ExamenFront.csproj", "{8A63CDE7-ED5B-4703-8071-F71F0C261324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExamenFront", "ExamenFront\ExamenFront.csproj", "{8A63CDE7-ED5B-4703-8071-F71F0C261324}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

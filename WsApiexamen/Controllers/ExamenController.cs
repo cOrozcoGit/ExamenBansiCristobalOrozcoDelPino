@@ -23,18 +23,18 @@ namespace WsApiexamen.Controllers
 
         [HttpPost("AgregarExamen")]
 
-        public async Task<ActionResult<ReturnMessage>> AgregarExamen(int idExamen, string Nombre, string Descripcion)
+        public async Task<ActionResult<ReturnMessage>> AgregarExamen([FromBody] Examen examenInput)
         {
             ReturnMessage returnMessage = new ReturnMessage();
+            Console.WriteLine(examenInput.IdExamen);
             Examen nuevoExamen = new Examen();
 
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    nuevoExamen.IdExamen = idExamen;
-                    nuevoExamen.Nombre = Nombre;
-                    nuevoExamen.Descripcion = Descripcion;
+                    nuevoExamen.Nombre = examenInput.Nombre;
+                    nuevoExamen.Descripcion = examenInput.Descripcion;
 
                     _context.TblExamen.Add(nuevoExamen);
                     await _context.SaveChangesAsync();
@@ -57,22 +57,23 @@ namespace WsApiexamen.Controllers
 
         [HttpPut("ActualizarExamen")]
 
-        public async Task<ActionResult<ReturnMessage>> ActualizarExamen(int idExamen, string Nombre, string Descripcion)
+        public async Task<ActionResult<ReturnMessage>> ActualizarExamen([FromBody] Examen examenInput)
         {
             ReturnMessage returnMessage = new ReturnMessage();
+            Console.WriteLine(examenInput.IdExamen);
             Examen nuevoExamen = new Examen();
             using (var transaction = _context.Database.BeginTransaction())
             {
                 try
                 {
-                    var examen = await _context.TblExamen.FindAsync(idExamen);
+                    var examen = await _context.TblExamen.FindAsync(examenInput.IdExamen);
                     if (examen == null)
                     {
                         throw new Exception("Examen no encontrado.");
                     }
 
-                    examen.Nombre = Nombre;
-                    examen.Descripcion = Descripcion;
+                    examen.Nombre = examenInput.Nombre;
+                    examen.Descripcion = examenInput.Descripcion;
 
                     await _context.SaveChangesAsync();
 
@@ -97,6 +98,7 @@ namespace WsApiexamen.Controllers
         public async Task<ActionResult<ReturnMessage>> EliminarExamen(int idExamen)
         {
             ReturnMessage returnMessage = new ReturnMessage();
+            Console.WriteLine(idExamen.ToString());
             using (var transaction = _context.Database.BeginTransaction())
             {
 

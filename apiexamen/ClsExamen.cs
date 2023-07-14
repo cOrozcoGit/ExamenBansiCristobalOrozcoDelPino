@@ -33,7 +33,7 @@ namespace apiexamen
             _httpClient = httpClient;
             _connectionString = connectionString;
         }
-        public async Task<ReturnMessage?> AgregarExamenAsync(int idExamen, string nombre, string descripcion, string method)
+        public async Task<ReturnMessage?> AgregarExamenAsync(int IdExamen, string Nombre, string Descripcion, string method)
         {
             ReturnMessage returnMessage = new ReturnMessage();
             try
@@ -43,7 +43,7 @@ namespace apiexamen
                 if (method == "WEBAPI")
                 {
 
-                    var parameters = new { idExamen, nombre, descripcion };
+                    var parameters = new { IdExamen, Nombre, Descripcion };
                     var json = JsonConvert.SerializeObject(parameters);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -61,8 +61,8 @@ namespace apiexamen
                         using (SqlCommand command = new SqlCommand("spAgregar", connection))
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.Parameters.AddWithValue("@Nombre", nombre);
-                            command.Parameters.AddWithValue("@Descripcion", descripcion);
+                            command.Parameters.AddWithValue("@Nombre", Nombre);
+                            command.Parameters.AddWithValue("@Descripcion", Descripcion);
 
                             await connection.OpenAsync();
 
@@ -88,7 +88,7 @@ namespace apiexamen
             return returnMessage;
 
         }
-        public async Task<ReturnMessage?> ActualizarExamenAsync(int idExamen, string nombre, string descripcion, string method)
+        public async Task<ReturnMessage?> ActualizarExamenAsync(int IdExamen, string Nombre, string Descripcion, string method)
         {
             ReturnMessage returnMessage = new ReturnMessage();
             try
@@ -98,7 +98,7 @@ namespace apiexamen
                 if (method == "WEBAPI")
                 {
 
-                    var parameters = new { idExamen, nombre, descripcion };
+                    var parameters = new { IdExamen, Nombre, Descripcion };
                     var json = JsonConvert.SerializeObject(parameters);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
 
@@ -116,9 +116,9 @@ namespace apiexamen
                         using (SqlCommand command = new SqlCommand("spActualizar", connection))
                         {
                             command.CommandType = CommandType.StoredProcedure;
-                            command.Parameters.AddWithValue("@idExamen", idExamen);
-                            command.Parameters.AddWithValue("@Nombre", nombre);
-                            command.Parameters.AddWithValue("@Descripcion", descripcion);
+                            command.Parameters.AddWithValue("@idExamen", IdExamen);
+                            command.Parameters.AddWithValue("@Nombre", Nombre);
+                            command.Parameters.AddWithValue("@Descripcion", Descripcion);
 
                             await connection.OpenAsync();
 
@@ -154,7 +154,7 @@ namespace apiexamen
 
                 if (method == "WEBAPI")
                 {
-                    HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7293/Examen/EliminarExamen?idExamen{idExamen}");
+                    HttpResponseMessage response = await _httpClient.DeleteAsync($"https://localhost:7293/Examen/EliminarExamen?idExamen={idExamen}");
 
                     response.EnsureSuccessStatusCode();
 
